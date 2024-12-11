@@ -5,10 +5,11 @@ import '../../../../../core/resources/color_manager.dart';
 import '../../../../../core/resources/styles_manager.dart';
 
 class CustomSectionBar extends StatelessWidget {
-  final String sectionNname;
-  final Function function;
+  final String sectionName;
+  final Function onClick;
+
   const CustomSectionBar(
-      {super.key, required this.sectionNname, required this.function});
+      {super.key, required this.sectionName, required this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class CustomSectionBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            sectionNname,
+            sectionName,
             style: getMediumStyle(
               fontSize: 18,
               color: ColorManager.darkBlue,
@@ -26,7 +27,7 @@ class CustomSectionBar extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              function();
+              onClick();
             },
             child: Text(
               'view all',

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/core/resources/assets_manager.dart';
 import 'package:ecommerce_app/core/resources/color_manager.dart';
 import 'package:ecommerce_app/core/resources/styles_manager.dart';
@@ -7,10 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProductCard extends StatelessWidget {
   final String image;
   final String title;
-  final double price;
+  final num price;
   final String description;
-  final double priceBeforeDiscound;
-  final double rating;
+  final num priceBeforeDiscound;
+  final num rating;
 
   const ProductCard({
     super.key,
@@ -21,6 +22,7 @@ class ProductCard extends StatelessWidget {
     required this.priceBeforeDiscound,
     required this.description,
   });
+
   String truncateTitle(String title) {
     List<String> words = title.split(' ');
     if (words.length <= 4) {
@@ -85,10 +87,7 @@ class ProductCard extends StatelessWidget {
                       ),
                       child: AspectRatio(
                         aspectRatio: 16 / 9,
-                        child: Image.asset(
-                          image,
-                          fit: BoxFit.cover,
-                        ),
+                        child: Image.network(image),
                       ),
                     ),
                   ),

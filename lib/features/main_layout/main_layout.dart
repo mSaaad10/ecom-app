@@ -6,7 +6,7 @@ import 'package:ecommerce_app/features/main_layout/favourite/presentation/favour
 import 'package:ecommerce_app/features/main_layout/profile_tab/presentation/profile_tab.dart';
 import 'package:flutter/material.dart';
 
-import 'home/presentation/home_tab.dart';
+import 'home/presentation/view/home_tab.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
