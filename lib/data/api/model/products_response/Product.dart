@@ -1,8 +1,7 @@
 import 'package:ecommerce_app/data/api/model/brands_response/Brand.dart';
 import 'package:ecommerce_app/data/api/model/categories_response/Category.dart';
+import 'package:ecommerce_app/data/api/model/subcategories_response/Subcategory.dart';
 import 'package:ecommerce_app/domain/entities/ProductEntity.dart';
-
-import 'Subcategory.dart';
 
 class Product {
   Product({
@@ -101,8 +100,7 @@ class Product {
         category: category?.toCategoryEntity(),
         subcategory: subcategory
             ?.map(
-              (subcategory) => subcategory.toSubCategoryEntity(),
-            )
+                (subcategory) => subcategory.toSubCategoryEntity())
             .toList(),
         sold: sold,
         ratingsQuantity: ratingsQuantity,

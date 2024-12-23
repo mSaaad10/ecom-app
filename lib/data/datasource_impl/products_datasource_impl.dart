@@ -12,7 +12,13 @@ class ProductsDataSourceImpl extends ProductsDataSource {
   ProductsDataSourceImpl({required this.apiManager});
 
   @override
-  Future<Result<List<Product>>> getProducts({String? sort}) {
-    return apiManager.getProducts(sort: sort);
+  Future<Result<List<Product>>> getProducts({
+    String? sort,
+    String? category,
+    String? subcategory,
+    String? brand,
+  }) {
+    return apiManager.getProducts(
+        sort: sort, subcategory: subcategory, category: category, brand: brand);
   }
 }

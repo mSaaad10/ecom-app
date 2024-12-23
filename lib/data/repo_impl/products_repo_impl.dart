@@ -13,8 +13,14 @@ class ProductsRepoImpl extends ProductsRepo {
   ProductsRepoImpl({required this.dataSource});
 
   @override
-  Future<Result<List<ProductEntity>>> getProducts({String? sort}) async {
-    var result = await dataSource.getProducts(sort: sort);
+  Future<Result<List<ProductEntity>>> getProducts({
+    String? sort,
+    String? category,
+    String? subcategory,
+    String? brand,
+  }) async {
+    var result = await dataSource.getProducts(
+        sort: sort, brand: brand, category: category, subcategory: subcategory);
     switch (result) {
       case Success<List<Product>>():
         return Success(

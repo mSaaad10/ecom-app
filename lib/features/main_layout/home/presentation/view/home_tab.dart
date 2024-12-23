@@ -5,7 +5,6 @@ import 'package:ecommerce_app/core/widget/error_state_widget.dart';
 import 'package:ecommerce_app/core/widget/loading_state_widget.dart';
 import 'package:ecommerce_app/features/main_layout/home/presentation/viewModel/brands_viewModel.dart';
 import 'package:ecommerce_app/features/main_layout/home/presentation/viewModel/categories_viewModel.dart';
-import 'package:ecommerce_app/features/main_layout/home/presentation/viewModel/most_selling_products_viewModel.dart';
 import 'package:ecommerce_app/features/main_layout/home/presentation/widgets/custom_brand_widget.dart';
 import 'package:ecommerce_app/features/main_layout/home/presentation/widgets/custom_category_widget.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/resources/assets_manager.dart';
-import '../../../../../core/widget/product_card.dart';
 import '../widgets/custom_ads_widget.dart';
 import '../widgets/custom_section_bar.dart';
 
@@ -41,7 +39,6 @@ class _HomeTabState extends State<HomeTab> {
     _startImageSwitching();
     categoriesViewModel.loadCategories();
     brandsViewModel.loadBrands();
-    productsViewModel.loadMostSellingProducts();
   }
 
   void _startImageSwitching() {
@@ -61,7 +58,8 @@ class _HomeTabState extends State<HomeTab> {
 
   CategoriesViewModel categoriesViewModel = getIt<CategoriesViewModel>();
   BrandsViewModel brandsViewModel = getIt<BrandsViewModel>();
-  ProductsViewModel productsViewModel = getIt<ProductsViewModel>();
+
+  //ProductsViewModel productsViewModel = getIt<ProductsViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +70,6 @@ class _HomeTabState extends State<HomeTab> {
         ),
         BlocProvider(
           create: (context) => brandsViewModel,
-        ),
-        BlocProvider(
-          create: (context) => productsViewModel,
         ),
       ],
       child: SingleChildScrollView(
@@ -156,48 +151,48 @@ class _HomeTabState extends State<HomeTab> {
                     }
                   },
                 ),
-                CustomSectionBar(
-                  sectionName: 'Most Selling Products',
-                  onClick: () {},
-                ),
-                BlocBuilder<ProductsViewModel, ProductsState>(
-                  builder: (context, state) {
-                    switch (state) {
-                      case ProductsSuccessState():
-                        return SizedBox(
-                          height: 360.h,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return ProductCard(
-                                  title: state.products[index].title ?? '',
-                                  description:
-                                      state.products[index].description ?? '',
-                                  //  "Nike is a multinational corporation that designs, develops, and sells athletic footwear ,apparel, and accessories",
-                                  rating:
-                                      state.products[index].ratingsAverage ?? 0,
-                                  price: state.products[index].price ?? 0,
-                                  priceBeforeDiscound:
-                                      state.products[index].price ?? 0,
-                                  image:
-                                      state.products[index].imageCover ?? '');
-                            },
-                            itemCount: state.products.length,
-                          ),
-                        );
-                      case ProductsLoadingState():
-                        return LoadingStateWidget();
-                      case ProductsErrorState():
-                        return ErrorStateWidget(
-                          exception: state.exception,
-                          retryButtonText: 'retry',
-                          retryButtonAction: () {
-                            productsViewModel.loadMostSellingProducts();
-                          },
-                        );
-                    }
-                  },
-                ),
+                // CustomSectionBar(
+                //   sectionName: 'Most Selling Products',
+                //   onClick: () {},
+                // ),
+                // BlocBuilder<ProductsViewModel, ProductsState>(
+                //   builder: (context, state) {
+                //     switch (state) {
+                //       case ProductsSuccessState():
+                //         return SizedBox(
+                //           height: 360.h,
+                //           child: ListView.builder(
+                //             scrollDirection: Axis.horizontal,
+                //             itemBuilder: (context, index) {
+                //               return ProductCard(
+                //                   title: state.products[index].title ?? '',
+                //                   description:
+                //                       state.products[index].description ?? '',
+                //                   //  "Nike is a multinational corporation that designs, develops, and sells athletic footwear ,apparel, and accessories",
+                //                   rating:
+                //                       state.products[index].ratingsAverage ?? 0,
+                //                   price: state.products[index].price ?? 0,
+                //                   priceBeforeDiscound:
+                //                       state.products[index].price ?? 0,
+                //                   image:
+                //                       state.products[index].imageCover ?? '');
+                //             },
+                //             itemCount: state.products.length,
+                //           ),
+                //         );
+                //       case ProductsLoadingState():
+                //         return LoadingStateWidget();
+                //       case ProductsErrorState():
+                //         return ErrorStateWidget(
+                //           exception: state.exception,
+                //           retryButtonText: 'retry',
+                //           retryButtonAction: () {
+                //             productsViewModel.loadMostSellingProducts();
+                //           },
+                //         );
+                //     }
+                //   },
+                // ),
                 SizedBox(height: 12.h),
               ],
             ),

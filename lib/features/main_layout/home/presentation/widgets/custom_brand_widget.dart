@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_app/core/routes_manager/routes.dart';
 import 'package:ecommerce_app/domain/entities/BrandEntity.dart';
+import 'package:ecommerce_app/features/main_layout/categories/presentation/productss_catalog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,21 +12,27 @@ class CustomBrandWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(100.r),
-          child: Container(
-              height: 100.h,
-              width: 100.w,
-              decoration: const BoxDecoration(
-                shape: BoxShape.rectangle,
-              ),
-              child: CachedNetworkImage(
-                imageUrl: brand.image ?? '',
-              )),
-        ),
-      ],
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, Routes.productsScreenRoute,
+            arguments: ProductsCatalog(brand: brand.id));
+      },
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(100.r),
+            child: Container(
+                height: 100.h,
+                width: 100.w,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.rectangle,
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: brand.image ?? '',
+                )),
+          ),
+        ],
+      ),
     );
   }
 }
